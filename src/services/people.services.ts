@@ -26,7 +26,6 @@ export default class PeopleService {
 
 
   addPeople(people: { id: number; name: string; age: number; occupation: string }) {
-    console.log(people)
     return this.peopleRepository.createPeople(people)
   }
 

@@ -22,8 +22,6 @@ describe('People API Routes', () => {
     }
     await request(app).post('/api/people').send(newPerson)
 
-    console.log((await request(app).get('/api/people')).body)
-
     const res = await request(app).get('/api/people/8')
     expect(res.body).toEqual([newPerson])
     expect(res.status).toBe(200)
