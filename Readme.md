@@ -26,3 +26,5 @@
 
 - GET: Return an array of people (initially empty)
 - POST: Add a new person to the array
+- "/api/people/:id" (GET): Returns a single person object by id.
+  "/api/people/:id" (DELETE): Removes the person with the given id from the array.
