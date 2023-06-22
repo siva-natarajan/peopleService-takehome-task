@@ -13,6 +13,22 @@ describe('People API Routes', () => {
     expect(res.status).toBe(200)
   })
 
+  it('GET person by Id', async () => {
+    const newPerson = {
+      "id": 8,
+      "name": "siva",
+      "age": 35,
+      "occupation": "CEO"
+    }
+    await request(app).post('/api/people').send(newPerson)
+
+    console.log((await request(app).get('/api/people')).body)
+
+    const res = await request(app).get('/api/people/8')
+    expect(res.body).toEqual([newPerson])
+    expect(res.status).toBe(200)
+  })
+
   it('POST - create people ', async () => {
     const newPerson = {
       "id": 1,
@@ -43,5 +59,19 @@ describe('People API Routes', () => {
     }
     const res = await request(app).post('/api/people').send(newPerson)
     expect(res.status).toBe(422)
+  })
+
+  it('DELETE - person ', async () => {
+    const newPerson = {
+      "id": 3,
+      "name": "siva",
+      "age": 35,
+      "occupation": "CEO"
+    }
+    await request(app).post('/api/people').send(newPerson)
+
+    const res = await request(app).delete(`/api/people/3`)
+    expect(res.status).toBe(200)
+    expect(res.body).toEqual({ "message": `succesfully removed 1 entry` })
   })
 })
